@@ -9,10 +9,10 @@ extern "js" fn Console::_get() -> Console =
 pub let console : Console = Console::_get()
 
 ///|
-extern "js" fn Console::_log(self : Console, value : Value) -> Unit =
-  #|(console, value) => console.log(value)
+extern "js" fn Console::_log(self : Console, value : Object) -> Unit =
+  #|(console, object) => console.log(object)
 
 ///|
-pub fn Console::log[T : ToValue](self : Console, value : T) -> Unit {
-  self._log(value.to_value())
+pub fn Console::log[T](self : Console, value : T) -> Unit {
+  self._log(identity(value))
 }

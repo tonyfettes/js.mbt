@@ -12,7 +12,7 @@ declare global {
   }
 }
 
-export default {
+const importObject: WebAssembly.Imports = {
   "tonyfettes:js/array": {
     new: () => new Array(0),
     push<T>(array: Array<T>, value: T) {
@@ -21,6 +21,9 @@ export default {
     length<T>(array: Array<T>): number {
       return array.length;
     },
+    get<T>(array: Array<T>, index: number): T {
+      return array[index];
+    }
   },
   "tonyfettes:js/console": {
     get: () => console,
@@ -32,3 +35,5 @@ export default {
     make_closure: (funcref: any, closure: any) => funcref.bind(null, closure),
   },
 };
+
+export default importObject;
