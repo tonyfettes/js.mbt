@@ -4,7 +4,7 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "moon test --target js && moon test --target wasm-gc || vitest run"
   },
   "keywords": [],
   "author": "",
