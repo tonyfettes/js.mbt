@@ -14,6 +14,7 @@
     "@types/node": "^22.10.10",
     "@vitest/browser": "^3.0.4",
     "playwright": "^1.50.0",
+    "prettier": "^3.4.2",
     "vite": "^6.0.7",
     "vitest": "^3.0.4"
   }

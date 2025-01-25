@@ -3,49 +3,35 @@ package tonyfettes/js
 alias @moonbitlang/core/builtin as @builtin
 
 // Values
-let null : Null
-
-let undefined : Undefined
 
 // Types and methods
 pub type Array
 impl Array {
+  get[T : Into](Self[T], Int) -> T
   length[T](Self[T]) -> Int
   new[T]() -> Self[T]
-  of[T : ArrayPush](@builtin.Array[T]) -> Self[T]
-  op_get[T : ArrayGet](Self[T], Int) -> T
-  push[T : ArrayPush](Self[T], T) -> Unit
+  of[T : From](@builtin.Array[T]) -> Self[T]
+  op_get[T : Into](Self[T], Int) -> T
+  op_set[T : From](Self[T], Int, T) -> Unit
+  push[T : From](Self[T], T) -> Unit
+  set[T : From](Self[T], Int, T) -> Unit
+  to[T : Into](Self[T]) -> @builtin.Array[T]
 }
 
-pub type Null
-
-pub type Nullable
-impl Nullable {
-  to_option[T](Self[T]) -> T?
+type Value
+impl Value {
+  from[T : From](T) -> Self[T]
+  into[T : Into](Self[T]) -> T
 }
-
-type Object
-
-pub type Undefinable
-impl Undefinable {
-  to_option[T](Self[T]) -> T?
-}
-
-pub type Undefined
 
 // Type aliases
 
 // Traits
-pub(open) trait ArrayGet {
-  get(Array[Self], Int) -> Self
-}
-impl ArrayGet::get
+trait From
+impl From for Int
+impl[T : From] From for T?
 
-pub(open) trait ArrayPush {
-  push(Array[Self], Self) -> Unit
-}
-impl ArrayPush::push
-impl ArrayPush for Bool
-impl ArrayPush for Int
-impl ArrayPush for Double
+trait Into
+impl Into for Int
+impl[T : Into] Into for T?
 

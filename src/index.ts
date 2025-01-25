@@ -13,13 +13,10 @@ declare global {
 }
 
 const importObject: WebAssembly.Imports = {
-  "tonyfettes:js/null": {
-    null: (): null => null,
-    is_null: (value: any): boolean => value === null,
-  },
-  "tonyfettes:js/undefined": {
-    undefined: (): undefined => undefined,
-    is_undefined: (value: any): boolean => value === undefined,
+  "tonyfettes:js": {
+    isNull: (value: any): boolean => value === null,
+    isUndefined: (value: any): boolean => value === undefined,
+    identity: <T>(value: T): T => value,
   },
   "tonyfettes:js/array": {
     new: () => new Array(0),

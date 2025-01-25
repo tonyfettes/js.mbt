@@ -1,14 +1,25 @@
 {
-  "import": ["tonyfettes/js"],
+  "import": [
+    "tonyfettes/js"
+  ],
   "link": {
     "js": {
-      "exports": ["test_array"]
+      "exports": [
+        "test_array",
+        "test_nullable_some"
+      ]
     },
     "wasm": {
-      "exports": ["test_array"]
+      "exports": [
+        "test_array",
+        "test_nullable_some"
+      ]
     },
     "wasm-gc": {
-      "exports": ["test_array"]
+      "exports": [
+        "test_array",
+        "test_nullable_some"
+      ]
     }
   }
 }
