@@ -1,1 +1,8 @@
-{}
+{
+  "targets": {
+    "array.wasm.mbt": ["wasm", "wasm-gc"],
+    "array.js.mbt": ["js"],
+    "null.wasm.mbt": ["wasm", "wasm-gc"],
+    "undefined.wasm.mbt": ["wasm", "wasm-gc"]
+  }
+}

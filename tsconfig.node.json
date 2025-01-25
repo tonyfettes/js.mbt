@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.test.tsbuildinfo",
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
     "target": "ESNext",
     "useDefineForClassFields": true,
     "lib": ["ESNext", "DOM"],
@@ -21,8 +21,11 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
 
-    "types": ["vite/client"]
+    "types": ["@types/node"],
+    "paths": {
+      "@test": ["./test/node"]
+    }
   },
-  "include": ["src", "target"],
+  "include": ["test"],
   "exclude": ["node_modules"]
 }

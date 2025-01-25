@@ -1,0 +1,14 @@
+{
+  "import": ["tonyfettes/js"],
+  "link": {
+    "js": {
+      "exports": ["test_array"]
+    },
+    "wasm": {
+      "exports": ["test_array"]
+    },
+    "wasm-gc": {
+      "exports": ["test_array"]
+    }
+  }
+}

@@ -13,6 +13,14 @@ declare global {
 }
 
 const importObject: WebAssembly.Imports = {
+  "tonyfettes:js/null": {
+    null: (): null => null,
+    is_null: (value: any): boolean => value === null,
+  },
+  "tonyfettes:js/undefined": {
+    undefined: (): undefined => undefined,
+    is_undefined: (value: any): boolean => value === undefined,
+  },
   "tonyfettes:js/array": {
     new: () => new Array(0),
     push<T>(array: Array<T>, value: T) {
@@ -23,12 +31,6 @@ const importObject: WebAssembly.Imports = {
     },
     get<T>(array: Array<T>, index: number): T {
       return array[index];
-    }
-  },
-  "tonyfettes:js/console": {
-    get: () => console,
-    log: (console: Console, object: any) => {
-      console.log(object);
     },
   },
   "moonbit:ffi": {

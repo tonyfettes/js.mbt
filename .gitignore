@@ -1,7 +1,3 @@
 target/
 .mooncakes/
-test.mts
-test.sh
-.vscode/
-test/
 node_modules/

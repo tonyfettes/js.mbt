@@ -1,2 +1,2 @@
 ///|
-pub typealias JsArray[T] = Array[T]
+pub typealias Array[T] = @builtin.Array[T]
