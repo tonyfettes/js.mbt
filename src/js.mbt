@@ -60,16 +60,52 @@ pub impl From for Int with from(self : Int) -> Value[Int] {
 }
 
 ///|
+fn Value::to_float(self : Value[Float]) -> Float = "tonyfettes:js" "identity"
+
+///|
+pub impl Into for Float with into(self : Value[Float]) -> Float {
+  Value::to_float(self)
+}
+
+///|
+fn Value::of_float(self : Float) -> Value[Float] = "tonyfettes:js" "identity"
+
+///|
+pub impl From for Float with from(self : Float) -> Value[Float] {
+  Value::of_float(self)
+}
+
+///|
 fn Value::to_double(self : Value[Double]) -> Double = "tonyfettes:js" "identity"
+
+///|
+pub impl Into for Double with into(self : Value[Double]) -> Double {
+  Value::to_double(self)
+}
 
 ///|
 fn Value::of_double(self : Double) -> Value[Double] = "tonyfettes:js" "identity"
 
 ///|
+pub impl From for Double with from(self : Double) -> Value[Double] {
+  Value::of_double(self)
+}
+
+///|
 fn Value::to_bool(self : Value[Bool]) -> Bool = "tonyfettes:js" "identity"
 
 ///|
+pub impl Into for Bool with into(self : Value[Bool]) -> Bool {
+  Value::to_bool(self)
+}
+
+///|
 fn Value::of_bool(self : Bool) -> Value[Bool] = "tonyfettes:js" "identity"
+
+///|
+pub impl From for Bool with from(self : Bool) -> Value[Bool] {
+  Value::of_bool(self)
+}
 
 ///|
 pub impl[T : Into] Into for T? with into(self : Value[T?]) -> T? {

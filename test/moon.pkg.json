@@ -6,19 +6,19 @@
     "js": {
       "exports": [
         "test_array",
-        "test_nullable_some"
+        "test_int"
       ]
     },
     "wasm": {
       "exports": [
         "test_array",
-        "test_nullable_some"
+        "test_int"
       ]
     },
     "wasm-gc": {
       "exports": [
         "test_array",
-        "test_nullable_some"
+        "test_int"
       ]
     }
   }

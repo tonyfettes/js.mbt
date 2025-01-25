@@ -6,6 +6,6 @@ pub fn test_array() -> @js.Array[Int] {
 }
 
 ///|
-pub fn test_nullable_some(value : @js.Value[Int]) -> String {
-  value.into().to_string()
+pub fn test_int(value : @js.Value[Int]) -> Int {
+  value.into()
 }

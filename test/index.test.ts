@@ -6,17 +6,24 @@ async function loadWasm(imports: WebAssembly.Imports) {
     const fs = await import("node:fs/promises");
     const { join } = await import("node:path");
 
-    const wasmPath = join(import.meta.dirname, "target/wasm/debug/build/test.wasm");
+    const wasmPath = join(
+      import.meta.dirname,
+      "target/wasm/debug/build/test.wasm"
+    );
     const wasmBuffer = await fs.readFile(wasmPath);
     return WebAssembly.instantiate(wasmBuffer, imports);
   } else {
-    const wasmUrl = new URL("target/wasm/debug/build/test.wasm", import.meta.url);
+    const wasmUrl = new URL(
+      "target/wasm/debug/build/test.wasm",
+      import.meta.url
+    );
     return WebAssembly.instantiateStreaming(fetch(wasmUrl), imports);
   }
 }
 
 export type MoonBitJsTestExports = {
   test_array: () => number[];
+  test_int: () => number;
 };
 
 test("test_array", async () => {
@@ -27,4 +34,5 @@ test("test_array", async () => {
       3,
     ]
   `);
+  expect(exports.test_int(42)).toMatchInlineSnapshot(`42`);
 });
