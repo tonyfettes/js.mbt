@@ -1,21 +1,15 @@
-import { defineConfig } from 'vite';
-import { spawnSync } from 'node:child_process';
-
-function moonPlugin(moduleDir: string = '') {
-  return {
-    name: 'moon-build',
-    buildStart() {
-      console.log('Running moon build...');
-      const args = moduleDir ? ['build', '--directory', moduleDir] : ['build'];
-      const result = spawnSync('moon', args, { stdio: 'inherit' });
-      if (result.error) {
-        throw result.error;
-      }
-    }
-  };
-}
+import dts from "vite-plugin-dts";
+import { defineConfig } from "vite";
+import { resolve } from "node:path";
 
 export default defineConfig({
-  plugins: [moonPlugin(), moonPlugin('test')]
+  build: {
+    lib: {
+      entry: resolve(__dirname, "src/index.ts"),
+      name: "js.mbt",
+      formats: ["es"],
+      fileName: "index",
+    },
+  },
+  plugins: [dts({ rollupTypes: true, tsconfigPath: 'tsconfig.web.json' })],
 });
-

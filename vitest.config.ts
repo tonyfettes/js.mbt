@@ -1,35 +1,47 @@
 /// <reference types="@vitest/browser/providers/playwright" />
-import { defineConfig } from 'vite';
-import { spawnSync } from 'node:child_process';
+import { defineConfig, Plugin } from 'vite';
+import { spawn, ChildProcess } from 'node:child_process';
 
-function moonPlugin(moduleDir: string = '') {
+function moonBuild(moduleDir: string = ''): Plugin {
+  let process: ChildProcess | null = null;
+  let command: "build" | "serve"
+
   return {
     name: 'moon-build',
+    configResolved(resolvedConfig) {
+      command = resolvedConfig.command
+    },
     buildStart() {
-      console.log('Running moon build...');
-      const args = ['build', '--target', 'wasm', '--debug'];
+      const args = ['build', '--target', 'all', '--debug'];
+      if (command === 'serve') {
+        args.push('--watch');
+      }
       if (moduleDir) {
         args.push('--directory', moduleDir);
       }
-      const result = spawnSync('moon', args, { stdio: 'inherit' });
-      if (result.error) {
-        throw result.error;
+      process = spawn('moon', args, { stdio: ['inherit', 'ignore', 'inherit'] });
+    },
+    buildEnd() {
+      if (process && !process.killed) {
+        process.kill();
+        process = null;
       }
     }
   };
 }
 
 export default defineConfig({
-  plugins: [moonPlugin('test')],
-  // test: {
-  //   browser: {
-  //     enabled: true,
-  //     provider: 'playwright',
-  //     instances: [
-  //       {
-  //         browser: 'firefox',
-  //       }
-  //     ]
-  //   }
-  // }
+  plugins: [moonBuild('.'), moonBuild('test')],
+  test: {
+    browser: {
+      enabled: true,
+      provider: 'playwright',
+      instances: [
+        {
+          browser: 'firefox',
+          headless: true
+        }
+      ]
+    }
+  }
 });

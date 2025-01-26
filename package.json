@@ -3,6 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "modules": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js"
+  },
   "scripts": {
     "test": "moon test --target js && moon test --target wasm-gc || vitest run"
   },
@@ -16,6 +24,7 @@
     "playwright": "^1.50.0",
     "prettier": "^3.4.2",
     "vite": "^6.0.7",
+    "vite-plugin-dts": "^4.5.0",
     "vitest": "^3.0.4"
   }
 }

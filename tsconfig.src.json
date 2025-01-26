@@ -21,10 +21,8 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
 
-    "paths": {
-      "@test": ["./test/web"]
-    }
+    "types": ["vite/client"]
   },
-  "include": ["src", "target", "test"],
+  "include": ["src", "target"],
   "exclude": ["node_modules"]
 }

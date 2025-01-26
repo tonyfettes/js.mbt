@@ -1,8 +1,14 @@
 ///|
+pub type Value[_]
+
+///|
 fn Value::cast[T, U](self : Value[T]) -> Value[U] = "%identity"
 
 ///|
-type Value[_]
+fn Value::unwrap[T](self : Value[T]) -> T = "%identity"
+
+///|
+fn Value::wrap[T](self : T) -> Value[T] = "%identity"
 
 ///|
 fn Value::null() -> Value[Unit] = "tonyfettes:js" "null"
@@ -24,9 +30,12 @@ fn Value::is_undefined[T](self : Value[T]) -> Bool {
 }
 
 ///|
-trait Into {
+pub(open) trait Into {
   into(Value[Self]) -> Self
 }
+
+///|
+impl Into with into(value : Value[Self]) -> Self { value.unwrap() }
 
 ///|
 pub fn Value::into[T : Into](self : Value[T]) -> T {
@@ -34,9 +43,12 @@ pub fn Value::into[T : Into](self : Value[T]) -> T {
 }
 
 ///|
-trait From {
+pub(open) trait From {
   from(Self) -> Value[Self]
 }
+
+///|
+impl From with from(value : Self) -> Value[Self] { Value::wrap(value) }
 
 ///|
 pub fn Value::from[T : From](self : T) -> Value[T] {
@@ -122,24 +134,4 @@ pub impl[T : From] From for T? with from(self : T?) -> Value[T?] {
     None => Value::null().cast()
     Some(value) => T::from(value).cast()
   }
-}
-
-///|
-fn Value::to_array(self : Value[Array[Unit]]) -> Array[Unit] = "tonyfettes:js" "identity"
-
-///|
-fn Value::of_array(self : Array[Unit]) -> Value[Array[Unit]] = "tonyfettes:js" "identity"
-
-///|
-pub impl[T : Into] Into for Array[T] with into(self : Value[Array[T]]) -> Array[
-  T,
-] {
-  Value::to_array(self.cast()).cast()
-}
-
-///|
-pub impl[T : From] From for Array[T] with from(self : Array[T]) -> Value[
-  Array[T],
-] {
-  Value::of_array(self.cast()).cast()
 }
