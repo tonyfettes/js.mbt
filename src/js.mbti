@@ -18,7 +18,7 @@ impl Array {
   to[T : Into](Self[T]) -> @builtin.Array[T]
 }
 
-type Value
+pub type Value
 impl Value {
   from[T : From](T) -> Self[T]
   into[T : Into](Self[T]) -> T
@@ -27,11 +27,23 @@ impl Value {
 // Type aliases
 
 // Traits
-trait From
+pub(open) trait From {
+  from(Self) -> Value[Self]
+}
+impl From::from
+impl From for Bool
 impl From for Int
+impl From for Float
+impl From for Double
 impl[T : From] From for T?
 
-trait Into
+pub(open) trait Into {
+  into(Value[Self]) -> Self
+}
+impl Into::into
+impl Into for Bool
 impl Into for Int
+impl Into for Float
+impl Into for Double
 impl[T : Into] Into for T?
 

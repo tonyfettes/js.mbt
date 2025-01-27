@@ -20,7 +20,9 @@ async function loadWasm(imports: WebAssembly.Imports) {
 }
 
 export type MoonBitJsTestExports = {
-  test_array: () => number[];
+  test_array_int: () => number[];
+  test_array_float: () => number[];
+  test_array_double: () => number[];
   test_array_modify: (array: number[]) => undefined;
   test_int: (value: number) => number;
   test_int_option: (value: number | null) => number;
@@ -29,22 +31,13 @@ export type MoonBitJsTestExports = {
 test("wasm", async () => {
   const { instance } = await loadWasm(JsImports);
   const exports = instance.exports as MoonBitJsTestExports;
-  expect(exports.test_array()).toMatchInlineSnapshot(`
-    [
-      3,
-    ]
-  `);
+  expect(exports.test_array_int()).toMatchObject([3]);
+  expect(exports.test_array_float()).toMatchObject([1, 2, 3]);
+  expect(exports.test_array_double()).toMatchObject([1, 2, 3]);
   const array = [1, 2, 3];
   exports.test_array_modify(array);
-  expect(array).toMatchInlineSnapshot(`
-    [
-      1,
-      2,
-      3,
-      4,
-    ]
-  `);
-  expect(exports.test_int(42)).toMatchInlineSnapshot(`42`);
-  expect(exports.test_int_option(42)).toMatchInlineSnapshot(`42`);
-  expect(exports.test_int_option(null)).toMatchInlineSnapshot(`-1`);
+  expect(array).toMatchObject([1, 2, 3, 4]);
+  expect(exports.test_int(42)).toBe(42);
+  expect(exports.test_int_option(42)).toBe(42);
+  expect(exports.test_int_option(null)).toBe(-1);
 });

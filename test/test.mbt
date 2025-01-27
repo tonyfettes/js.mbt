@@ -1,7 +1,25 @@
 ///|
-pub fn test_array() -> @js.Array[Int] {
-  let array = @js.Array::new()
+pub fn test_array_int() -> @js.Array[Int] {
+  let array : @js.Array[Int] = @js.Array::new()
   array.push(3)
+  array
+}
+
+///|
+pub fn test_array_float() -> @js.Array[Float] {
+  let array : @js.Array[Float] = @js.Array::new()
+  array.push(1.0)
+  array.push(2.0)
+  array.push(3.0)
+  array
+}
+
+///|
+pub fn test_array_double() -> @js.Array[Double] {
+  let array : @js.Array[Double] = @js.Array::new()
+  array.push(1.0)
+  array.push(2.0)
+  array.push(3.0)
   array
 }
 

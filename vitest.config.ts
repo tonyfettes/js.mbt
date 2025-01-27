@@ -13,9 +13,9 @@ function moonBuild(moduleDir: string = ''): Plugin {
     },
     buildStart() {
       const args = ['build', '--target', 'all', '--debug'];
-      if (command === 'serve') {
-        args.push('--watch');
-      }
+      // if (command === 'serve') {
+      //   args.push('--watch');
+      // }
       if (moduleDir) {
         args.push('--directory', moduleDir);
       }
