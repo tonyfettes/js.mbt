@@ -41,9 +41,9 @@ const importObject: WebAssembly.Imports = {
   },
   console: {
     log: (...args: any[]): void => {
-      console.log(...args)
-    }
-  }
+      console.log(...args);
+    },
+  },
 };
 
 export default importObject;
