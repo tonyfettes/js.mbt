@@ -1,7 +1,4 @@
 ///|
-pub type Value[_]
-
-///|
 fn Value::cast[T, U](self : Value[T]) -> Value[U] = "%identity"
 
 ///|
@@ -9,15 +6,6 @@ fn Value::unwrap[T](self : Value[T]) -> T = "%identity"
 
 ///|
 fn Value::wrap[T](self : T) -> Value[T] = "%identity"
-
-///|
-fn Value::null() -> Value[Unit] = "tonyfettes:js" "null"
-
-///|
-fn Value::_is_null(self : Value[Unit]) -> Bool = "tonyfettes:js" "isNull"
-
-///|
-fn Value::_is_undefined(self : Value[Unit]) -> Bool = "tonyfettes:js" "isUndefined"
 
 ///|
 fn Value::is_null[T](self : Value[T]) -> Bool {
@@ -73,28 +61,7 @@ pub fn Value::from[T : From](self : T) -> Value[T] {
 }
 
 ///|
-fn Value::to_bool(self : Value[Bool]) -> Bool = "tonyfettes:js" "identity"
-
-///|
-fn Value::to_int(self : Value[Int]) -> Int = "tonyfettes:js" "identity"
-
-///|
-fn Value::to_float(self : Value[Float]) -> Float = "tonyfettes:js" "identity"
-
-///|
-fn Value::to_double(self : Value[Double]) -> Double = "tonyfettes:js" "identity"
-
-///|
-fn Value::of_bool(self : Bool) -> Value[Bool] = "tonyfettes:js" "identity"
-
-///|
-fn Value::of_int(self : Int) -> Value[Int] = "tonyfettes:js" "identity"
-
-///|
-fn Value::of_float(self : Float) -> Value[Float] = "tonyfettes:js" "identity"
-
-///|
-fn Value::of_double(self : Double) -> Value[Double] = "tonyfettes:js" "identity"
+pub impl Into for Unit with into(self : Value[Unit]) -> Unit { ignore(self) }
 
 ///|
 pub impl Into for Bool with into(self : Value[Bool]) -> Bool {
@@ -148,7 +115,7 @@ pub impl[T : Into] Into for T? with into(self : Value[T?]) -> T? {
 ///|
 pub impl[T : From] From for T? with from(self : T?) -> Value[T?] {
   match self {
-    None => Value::null().cast()
+    None => Value::_null().cast()
     Some(value) => T::from(value).cast()
   }
 }

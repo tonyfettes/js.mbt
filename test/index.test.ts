@@ -1,6 +1,7 @@
 import { test, expect } from "vitest";
 import JsImports from "../src/index.ts";
 import wasmUrl from "./target/wasm/debug/build/test.wasm?url";
+import * as JsExports from "./target/js/debug/build/test";
 
 async function loadWasm(imports: WebAssembly.Imports) {
   if (typeof process === "object") {
@@ -25,7 +26,7 @@ export type MoonBitJsTestExports = {
   test_array_double: () => number[];
   test_array_modify: (array: number[]) => undefined;
   test_int: (value: number) => number;
-  test_int_option: (value: number | null) => number;
+  test_int_option: (value: number | undefined) => number;
 };
 
 test("wasm", async () => {
@@ -39,5 +40,18 @@ test("wasm", async () => {
   expect(array).toMatchObject([1, 2, 3, 4]);
   expect(exports.test_int(42)).toBe(42);
   expect(exports.test_int_option(42)).toBe(42);
-  expect(exports.test_int_option(null)).toBe(-1);
+  expect(exports.test_int_option(undefined)).toBe(-1);
+});
+
+test("js", async () => {
+  const exports = JsExports;
+  expect(exports.test_array_int()).toMatchObject([3]);
+  expect(exports.test_array_float()).toMatchObject([1, 2, 3]);
+  expect(exports.test_array_double()).toMatchObject([1, 2, 3]);
+  const array = [1, 2, 3];
+  exports.test_array_modify(array);
+  expect(array).toMatchObject([1, 2, 3, 4]);
+  expect(exports.test_int(42)).toBe(42);
+  expect(exports.test_int_option(42)).toBe(42);
+  expect(exports.test_int_option(undefined)).toBe(-1);
 });

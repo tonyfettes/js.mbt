@@ -4,10 +4,15 @@ declare global {
     importedStringConstants: string;
   };
   namespace WebAssembly {
+    function instantiate(
+      bytes: BufferSource,
+      importObject?: Imports,
+      compileOptions?: WebAssemblyCompileOptions,
+    ): Promise<WebAssemblyInstantiatedSource>;
     function instantiateStreaming(
       source: Response | PromiseLike<Response>,
       importObject?: WebAssembly.Imports,
-      compileOptions?: WebAssemblyCompileOptions
+      compileOptions?: WebAssemblyCompileOptions,
     ): Promise<WebAssembly.WebAssemblyInstantiatedSource>;
   }
 }
@@ -34,6 +39,11 @@ const importObject: WebAssembly.Imports = {
   "moonbit:ffi": {
     make_closure: (funcref: any, closure: any) => funcref.bind(null, closure),
   },
+  console: {
+    log: (...args: any[]): void => {
+      console.log(...args)
+    }
+  }
 };
 
 export default importObject;

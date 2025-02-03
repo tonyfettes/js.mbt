@@ -1,47 +1,57 @@
 /// <reference types="@vitest/browser/providers/playwright" />
-import { defineConfig, Plugin } from 'vite';
-import { spawn, ChildProcess } from 'node:child_process';
+import { defineConfig, Plugin } from "vite";
+import { spawn, ChildProcess } from "node:child_process";
 
-function moonBuild(moduleDir: string = ''): Plugin {
-  let process: ChildProcess | null = null;
-  let command: "build" | "serve"
+const targets = ["js", "wasm", "wasm-gc"] as const;
+
+function moonBuild(moduleDir: string = ""): Plugin {
+  let process: {
+    wasm?: ChildProcess;
+    "wasm-gc"?: ChildProcess;
+    js?: ChildProcess;
+  } = {};
+  let command: "build" | "serve";
 
   return {
-    name: 'moon-build',
+    name: "moon-build",
     configResolved(resolvedConfig) {
-      command = resolvedConfig.command
+      command = resolvedConfig.command;
     },
     buildStart() {
-      const args = ['build', '--target', 'all', '--debug'];
-      // if (command === 'serve') {
-      //   args.push('--watch');
-      // }
-      if (moduleDir) {
-        args.push('--directory', moduleDir);
+      for (const target of ["wasm-gc", "js"] as const) {
+        const args = ["build", "--target", target, "--debug"];
+        if (moduleDir) {
+          args.push("--directory", moduleDir);
+        }
+        process[target] = spawn("moon", args, {
+          stdio: ["inherit", "ignore", "inherit"],
+        });
       }
-      process = spawn('moon', args, { stdio: ['inherit', 'ignore', 'inherit'] });
     },
     buildEnd() {
-      if (process && !process.killed) {
-        process.kill();
-        process = null;
+      for (const target of ["wasm-gc", "js"] as const) {
+        const proc = process[target]
+        if (proc && !proc.killed) {
+          proc.kill();
+          proc[target] = undefined;
+        }
       }
-    }
+    },
   };
 }
 
 export default defineConfig({
-  plugins: [moonBuild('.'), moonBuild('test')],
+  plugins: [moonBuild("."), moonBuild("test")],
   test: {
     browser: {
       enabled: true,
-      provider: 'playwright',
+      provider: "playwright",
       instances: [
         {
-          browser: 'firefox',
-          headless: true
-        }
-      ]
-    }
-  }
+          browser: "firefox",
+          headless: true,
+        },
+      ],
+    },
+  },
 });
