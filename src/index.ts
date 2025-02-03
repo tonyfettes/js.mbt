@@ -17,6 +17,7 @@ const importObject: WebAssembly.Imports = {
     isNull: (value: any): boolean => value === null,
     isUndefined: (value: any): boolean => value === undefined,
     identity: <T>(value: T): T => value,
+    call: <T, R>(f: (...args: T[]) => R, ...args: T[]): R => f(...args),
   },
   "tonyfettes:js/array": {
     new: () => new Array(0),

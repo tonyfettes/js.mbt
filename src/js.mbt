@@ -30,6 +30,23 @@ fn Value::is_undefined[T](self : Value[T]) -> Bool {
 }
 
 ///|
+pub fn Value::call[T : From, R : Into](self : Value[(T) -> R], arg0 : T) -> R {
+  self.cast()._call(T::from(arg0).cast()).cast() |> R::into()
+}
+
+///|
+pub fn Value::call2[A : From, B : From, R : Into](
+  self : Value[(A, B) -> R],
+  arg0 : A,
+  arg1 : B
+) -> R {
+  let arg0 = A::from(arg0).cast()
+  let arg1 = B::from(arg1).cast()
+  let result = self.cast()._call2(arg0, arg1).cast()
+  R::into(result)
+}
+
+///|
 pub(open) trait Into {
   into(Value[Self]) -> Self
 }
