@@ -30,7 +30,7 @@ function moonBuild(moduleDir: string = ""): Plugin {
     },
     buildEnd() {
       for (const target of ["wasm-gc", "js"] as const) {
-        const proc = process[target]
+        const proc = process[target];
         if (proc && !proc.killed) {
           proc.kill();
           proc[target] = undefined;

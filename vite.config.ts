@@ -11,5 +11,5 @@ export default defineConfig({
       fileName: "index",
     },
   },
-  plugins: [dts({ rollupTypes: true, tsconfigPath: 'tsconfig.src.json' })],
+  plugins: [dts({ rollupTypes: true, tsconfigPath: "tsconfig.src.json" })],
 });
