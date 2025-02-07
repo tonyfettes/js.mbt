@@ -12,7 +12,8 @@
     ".": "./dist/index.js"
   },
   "scripts": {
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "build": "vite build"
   },
   "keywords": [],
   "author": "",
