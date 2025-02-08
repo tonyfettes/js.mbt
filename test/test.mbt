@@ -37,3 +37,8 @@ pub fn test_int(value : @js.Value[Int]) -> Int {
 pub fn test_int_option(value : @js.Value[Int?]) -> Int {
   value.into().or(-1)
 }
+
+///|
+pub fn test_is_null(value : @js.Value[Unit]) -> Bool {
+  value.is_null()
+}
