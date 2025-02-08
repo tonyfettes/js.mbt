@@ -8,12 +8,12 @@ fn Value::unwrap[T](self : Value[T]) -> T = "%identity"
 fn Value::wrap[T](self : T) -> Value[T] = "%identity"
 
 ///|
-fn Value::is_null[T](self : Value[T]) -> Bool {
+pub fn Value::is_null[T](self : Value[T]) -> Bool {
   self.cast()._is_null()
 }
 
 ///|
-fn Value::is_undefined[T](self : Value[T]) -> Bool {
+pub fn Value::is_undefined[T](self : Value[T]) -> Bool {
   self.cast()._is_undefined()
 }
 
