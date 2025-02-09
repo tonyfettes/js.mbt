@@ -1,5 +1,6 @@
 {
   "targets": {
+    "js.mbt": ["js", "wasm", "wasm-gc"],
     "array.wasm.mbt": ["wasm", "wasm-gc"],
     "js.wasm.mbt": ["wasm", "wasm-gc"]
   }
