@@ -14,7 +14,7 @@ async function loadWasm(imports: WebAssembly.Imports) {
   } else {
     const wasmUrl = new URL(
       "target/wasm/debug/build/test.wasm",
-      import.meta.url
+      import.meta.url,
     );
     return WebAssembly.instantiateStreaming(fetch(wasmUrl), imports);
   }
