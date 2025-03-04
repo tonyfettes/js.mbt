@@ -1,5 +1,5 @@
 ///|
-pub type Array[_]
+pub extern type Array[_]
 
 ///|
 fn Array::cast[T, U](self : Array[T]) -> Array[U] = "%identity"
