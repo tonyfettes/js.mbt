@@ -1,5 +1,5 @@
 ///|
-pub type Value[_]
+pub extern type Value[_]
 
 ///|
 extern "js" fn Value::_null() -> Value[Unit] =
