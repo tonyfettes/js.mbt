@@ -20,8 +20,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
-
-    "types": ["vite/client"]
   },
   "include": ["src", "target"],
   "exclude": ["node_modules"]
