@@ -8,7 +8,8 @@
         "test_array_double",
         "test_array_modify",
         "test_int",
-        "test_int_option"
+        "test_int_option",
+        "test_is_null"
       ]
     },
     "wasm": {
@@ -18,7 +19,8 @@
         "test_array_double",
         "test_array_modify",
         "test_int",
-        "test_int_option"
+        "test_int_option",
+        "test_is_null"
       ]
     },
     "wasm-gc": {
@@ -28,7 +30,8 @@
         "test_array_double",
         "test_array_modify",
         "test_int",
-        "test_int_option"
+        "test_int_option",
+        "test_is_null"
       ]
     }
   }
