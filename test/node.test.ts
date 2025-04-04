@@ -1,20 +1,11 @@
 import test from "node:test";
 import JsImports from "../src/index.ts";
 import fs from "node:fs/promises";
-import path from "node:path";
+import Path from "node:path";
 import assert from "node:assert/strict";
-import * as JsExports from "./target/js/debug/build/test.js";
+import ChildProcess from "node:child_process";
 
-async function loadWasm(imports: WebAssembly.Imports) {
-  const wasmPath = path.join(
-    import.meta.dirname,
-    "target/wasm/debug/build/test.wasm"
-  );
-  const wasmBuffer = await fs.readFile(wasmPath);
-  return WebAssembly.instantiate(wasmBuffer, imports);
-}
-
-type MoonBitJsTestExports = {
+type MoonBitTestExports = {
   test_array_int: () => number[];
   test_array_float: () => number[];
   test_array_double: () => number[];
@@ -24,10 +15,64 @@ type MoonBitJsTestExports = {
   test_is_null: (value: null) => boolean;
 };
 
+function moonBuild(
+  target: "js" | "wasm" | "wasm-gc",
+  profile: "debug" | "release"
+) {
+  const args = ["build", "--target", target];
+  if (profile === "release") {
+    args.push("--release");
+  } else {
+    args.push("--debug");
+  }
+  const process = ChildProcess.spawnSync("moon", args, {
+    stdio: "inherit",
+  });
+  if (process.status !== 0) {
+    throw process.error;
+  }
+}
+
+function getExtension(target: "js" | "wasm" | "wasm-gc") {
+  switch (target) {
+    case "js":
+      return "js";
+    case "wasm":
+    case "wasm-gc":
+      return "wasm";
+  }
+}
+
+async function loadExports(
+  target: "js" | "wasm" | "wasm-gc",
+  profile: "debug" | "release",
+  imports: WebAssembly.Imports
+): Promise<MoonBitTestExports> {
+  moonBuild(target, profile);
+  const extension = getExtension(target);
+  const artifactPath = Path.join(
+    import.meta.dirname,
+    `target/${target}/${profile}/build/test.${extension}`
+  );
+  if (target === "js") {
+    return (await import(artifactPath)) as MoonBitTestExports;
+  } else {
+    const wasmBuffer = await fs.readFile(artifactPath);
+    const { instance } = await WebAssembly.instantiate(wasmBuffer, imports);
+    return instance.exports as MoonBitTestExports;
+  }
+}
+
 test("test", async () => {
-  const { instance } = await loadWasm(JsImports);
-  const wasmExports = instance.exports as MoonBitJsTestExports;
-  for (const exports of [wasmExports, JsExports]) {
+  const targets = ["js", "wasm", "wasm-gc"] as const;
+  const profiles = ["debug", "release"] as const;
+  const targetExports = [];
+  for (const target of targets) {
+    for (const profile of profiles) {
+      targetExports.push(await loadExports(target, profile, JsImports));
+    }
+  }
+  for (const exports of targetExports) {
     assert.deepStrictEqual(exports.test_array_int(), [3]);
     assert.deepStrictEqual(exports.test_array_float(), [1, 2, 3]);
     assert.deepStrictEqual(exports.test_array_double(), [1, 2, 3]);
