@@ -1,49 +1,15 @@
-package tonyfettes/js
-
-alias @moonbitlang/core/builtin as @builtin
+package "tonyfettes/js"
 
 // Values
 
 // Types and methods
-pub type Array
-impl Array {
-  get[T : Into](Self[T], Int) -> T
-  length[T](Self[T]) -> Int
-  new[T]() -> Self[T]
-  of[T : From](@builtin.Array[T]) -> Self[T]
-  op_get[T : Into](Self[T], Int) -> T
-  op_set[T : From](Self[T], Int, T) -> Unit
-  push[T : From](Self[T], T) -> Unit
-  set[T : From](Self[T], Int, T) -> Unit
-  to[T : Into](Self[T]) -> @builtin.Array[T]
-}
-
-pub type Value
-impl Value {
-  from[T : From](T) -> Self[T]
-  into[T : Into](Self[T]) -> T
-}
 
 // Type aliases
+pub typealias Array = @tonyfettes/js/array.T
+
+pub typealias String = @tonyfettes/js/string.T
+
+pub typealias Value = @tonyfettes/js/value.T
 
 // Traits
-pub(open) trait From {
-  from(Self) -> Value[Self]
-}
-impl From::from
-impl From for Bool
-impl From for Int
-impl From for Float
-impl From for Double
-impl[T : From] From for T?
-
-pub(open) trait Into {
-  into(Value[Self]) -> Self
-}
-impl Into::into
-impl Into for Bool
-impl Into for Int
-impl Into for Float
-impl Into for Double
-impl[T : Into] Into for T?
 

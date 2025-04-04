@@ -35,8 +35,7 @@ test("test", async () => {
     exports.test_array_modify(array);
     assert.deepStrictEqual(array, [1, 2, 3, 4]);
     assert.strictEqual(exports.test_int(42), 42);
-    assert.strictEqual(exports.test_int_option(42), 42);
-    assert.strictEqual(exports.test_int_option(undefined), -1);
+    assert.strictEqual(exports.test_int(undefined), -1);
     assert.strictEqual(!!exports.test_is_null(null), true);
   }
 });

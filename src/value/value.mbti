@@ -1,0 +1,36 @@
+package "tonyfettes/js/value"
+
+// Values
+fn null() -> T
+
+fn to[To : To](T) -> To?
+
+// Types and methods
+pub extern type T
+impl T {
+  is_boolean(Self) -> Bool
+  is_null(Self) -> Bool
+  is_number(Self) -> Bool
+  is_undefined(Self) -> Bool
+  to[To : To](Self) -> To?
+}
+
+// Type aliases
+
+// Traits
+pub(open) trait Of {
+  to_value(Self) -> T
+}
+impl Of for Bool
+impl Of for Int
+impl Of for Float
+impl Of for Double
+
+pub(open) trait To {
+  to(T) -> Self?
+}
+impl To for Bool
+impl To for Int
+impl To for Float
+impl To for Double
+

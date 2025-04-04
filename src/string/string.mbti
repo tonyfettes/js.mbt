@@ -1,0 +1,17 @@
+package "tonyfettes/js/string"
+
+import(
+  "tonyfettes/js/value"
+)
+
+// Values
+
+// Types and methods
+pub extern type T
+impl @value.Of for T
+impl @value.To for T
+
+// Type aliases
+
+// Traits
+

@@ -1,0 +1,7 @@
+{
+  "targets": {
+    "array.js.mbt": ["js"],
+    "array.wasm.mbt": ["wasm"]
+  },
+  "import": ["tonyfettes/js/value", "tonyfettes/js/object"]
+}

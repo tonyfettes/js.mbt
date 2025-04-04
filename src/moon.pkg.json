@@ -1,9 +1,13 @@
 {
-  "targets": {
-    "js.mbt": ["js", "wasm", "wasm-gc"],
-    "array.js.mbt": ["js"],
-    "array.wasm.mbt": ["wasm", "wasm-gc"],
-    "js.wasm.mbt": ["wasm", "wasm-gc"],
-    "js.js.mbt": ["js"]
-  }
+  "import": [
+    "tonyfettes/js/string",
+    "tonyfettes/js/array",
+    "tonyfettes/js/value"
+  ],
+  "test-import": [
+    {
+      "path": "tonyfettes/js",
+      "alias": "-"
+    }
+  ]
 }

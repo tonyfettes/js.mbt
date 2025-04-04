@@ -1,0 +1,6 @@
+{
+  "targets": {
+    "value.js.mbt": ["js"],
+    "value.wasm.mbt": ["wasm"]
+  }
+}
