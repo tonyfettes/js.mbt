@@ -22,14 +22,16 @@ pub(open) trait Of {
   to_value(Self) -> T
 }
 impl Of for Bool
+impl Of for Char
 impl Of for Int
 impl Of for Float
 impl Of for Double
 
 pub(open) trait To {
-  to(T) -> Self?
+  of_value(T) -> Self?
 }
 impl To for Bool
+impl To for Char
 impl To for Int
 impl To for Float
 impl To for Double

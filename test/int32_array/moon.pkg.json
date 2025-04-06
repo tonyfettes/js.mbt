@@ -1,0 +1,14 @@
+{
+  "import": ["tonyfettes/js", "tonyfettes/js/int32_array"],
+  "link": {
+    "js": {
+      "exports": ["int32_array_length", "int32_array_get", "int32_array_set"]
+    },
+    "wasm": {
+      "exports": ["int32_array_length", "int32_array_get", "int32_array_set"]
+    },
+    "wasm-gc": {
+      "exports": ["int32_array_length", "int32_array_get", "int32_array_set"]
+    }
+  }
+}

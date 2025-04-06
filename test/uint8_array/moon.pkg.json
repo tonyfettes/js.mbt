@@ -1,0 +1,14 @@
+{
+  "import": ["tonyfettes/js", "tonyfettes/js/uint8_array"],
+  "link": {
+    "js": {
+      "exports": ["uint8_array_length", "uint8_array_get", "uint8_array_set"]
+    },
+    "wasm": {
+      "exports": ["uint8_array_length", "uint8_array_get", "uint8_array_set"]
+    },
+    "wasm-gc": {
+      "exports": ["uint8_array_length", "uint8_array_get", "uint8_array_set"]
+    }
+  }
+}

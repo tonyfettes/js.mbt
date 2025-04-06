@@ -25,6 +25,9 @@ fn T::to_bool(self : T) -> Bool = "%identity"
 fn T::to_int(self : T) -> Int = "%identity"
 
 ///|
+fn T::to_char(self : T) -> Char = "%identity"
+
+///|
 fn T::to_float(self : T) -> Float = "%identity"
 
 ///|
@@ -35,6 +38,9 @@ fn T::of_bool(self : Bool) -> T = "%identity"
 
 ///|
 fn T::of_int(self : Int) -> T = "%identity"
+
+///|
+fn T::of_char(self : Char) -> T = "%identity"
 
 ///|
 fn T::of_float(self : Float) -> T = "%identity"

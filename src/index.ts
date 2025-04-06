@@ -49,10 +49,10 @@ export default {
   },
   "tonyfettes:js/object": {
     new: () => ({}),
-    set: (object: any, key: string, value: any) => {
+    set: (object: any, key: any, value: any) => {
       object[key] = value;
     },
-    get: (object: any, key: string): any => {
+    get: (object: any, key: any): any => {
       return object[key];
     },
   },
@@ -66,8 +66,61 @@ export default {
     char_code_at: (string: string, index: number): number => {
       return string.charCodeAt(index);
     },
-    equal: (a: string, b: string): boolean => {
+    strict_equal: (a: string, b: string): boolean => {
       return a === b;
+    },
+  },
+  "tonyfettes:js/array_buffer": {
+    new: (length: number): ArrayBuffer => {
+      return new ArrayBuffer(length);
+    },
+  },
+  "tonyfettes:js/uint8_array": {
+    new: (length: number): Uint8Array => {
+      return new Uint8Array(length);
+    },
+    from_array_buffer: (
+      buffer: ArrayBuffer,
+      byteOffset: number,
+      length: number
+    ): Uint8Array => {
+      return new Uint8Array(buffer, byteOffset, length);
+    },
+    from_array: (array: Array<number>): Uint8Array => {
+      return Uint8Array.from(array);
+    },
+    length(array: Uint8Array): number {
+      return array.length;
+    },
+    set(array: Uint8Array, index: number, value: number): void {
+      array[index] = value;
+    },
+    get(array: Uint8Array, index: number): number {
+      return array[index];
+    },
+  },
+  "tonyfettes:js/int32_array": {
+    new: (length: number): Int32Array => {
+      return new Int32Array(length);
+    },
+    from_array_buffer: (
+      buffer: ArrayBuffer,
+      byteOffset: number,
+      length: number
+    ): Int32Array => {
+      return new Int32Array(buffer, byteOffset, length);
+    },
+    from_array: (array: Array<number>): Int32Array => {
+      return Int32Array.from(array);
+    },
+    length(array: Int32Array): number {
+      return array.length;
+    },
+    set(array: Int32Array, index: number, value: number): void {
+      array[index] = value;
+    },
+    get(array: Int32Array, index: number): number {
+      return array[index];
     },
   },
   "moonbit:ffi": {

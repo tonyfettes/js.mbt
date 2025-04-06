@@ -2,7 +2,11 @@
   "import": [
     "tonyfettes/js/string",
     "tonyfettes/js/array",
-    "tonyfettes/js/value"
+    "tonyfettes/js/value",
+    "tonyfettes/js/object",
+    "tonyfettes/js/array_buffer",
+    "tonyfettes/js/uint8_array",
+    "tonyfettes/js/int32_array"
   ],
   "test-import": [
     {

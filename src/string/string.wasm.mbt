@@ -11,7 +11,7 @@ fn _of(value : @value.T) -> T = "tonyfettes:js" "identity"
 fn _to(self : T) -> @value.T = "tonyfettes:js" "identity"
 
 ///|
-pub impl @value.To for T with to(value : @value.T) -> T? {
+pub impl @value.To for T with of_value(value : @value.T) -> T? {
   guard _is(value) else { return None }
   Some(_of(value))
 }
@@ -33,6 +33,18 @@ pub fn equal(self : T, other : T) -> Bool = "tonyfettes:js/string" "equal"
 ///|
 pub impl Eq for T with op_equal(self : T, other : T) -> Bool {
   equal(self, other)
+}
+
+///|
+fn make(array : @array.T) -> T = "tonyfettes:js/string" "make"
+
+///|
+pub fn of_string(string : String) -> T {
+  let js_array = @array.new()
+  for char in string {
+    js_array.push(char)
+  }
+  make(js_array)
 }
 
 ///|

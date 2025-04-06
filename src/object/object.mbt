@@ -2,7 +2,7 @@
 pub extern type T
 
 ///|
-pub impl @value.To for T with to(value : @value.T) -> T? {
+pub impl @value.To for T with of_value(value : @value.T) -> T? {
   guard _is(value) else { return None }
   Some(_to(value))
 }

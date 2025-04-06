@@ -8,6 +8,11 @@ fn _of_value_array(array : Array[@value.T]) -> T = "%identity"
 fn _to_value_array(self : T) -> Array[@value.T] = "%identity"
 
 ///|
+pub fn new() -> T {
+  _of_value_array([])
+}
+
+///|
 pub fn T::new() -> T {
   _of_value_array([])
 }
@@ -20,26 +25,6 @@ extern "js" fn _is(object : @object.T) -> Bool =
 
 ///|
 extern "js" fn _of_object(object : @object.T) -> T = "%identity"
-
-///|
-pub impl @object.To for T with to(value : @object.T) -> T? {
-  guard _is(value) else { return None }
-  Some(_of_object(value))
-}
-
-///|
-pub impl @object.Of for T with to_object(self : T) -> @object.T = "%identity"
-
-///|
-pub impl @value.To for T with to(value : @value.T) -> T? {
-  guard value.to() is Some((object : @object.T)) else { return None }
-  object.to()
-}
-
-///|
-pub impl @value.Of for T with to_value(self : T) -> @value.T {
-  self.to_object().to_value()
-}
 
 ///|
 fn T::push_value(self : T, value : @value.T) -> Unit {

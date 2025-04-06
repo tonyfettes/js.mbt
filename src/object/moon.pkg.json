@@ -4,5 +4,5 @@
     "object.wasm.mbt": ["wasm", "wasm-gc"],
     "object.mbt": ["js", "wasm", "wasm-gc"]
   },
-  "import": ["tonyfettes/js/value", "tonyfettes/js/string"]
+  "import": ["tonyfettes/js/value"]
 }

@@ -1,0 +1,12 @@
+package "tonyfettes/js/array_buffer"
+
+// Values
+fn new() -> T
+
+// Types and methods
+pub extern type T
+
+// Type aliases
+
+// Traits
+

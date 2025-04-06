@@ -1,0 +1,6 @@
+{
+  "targets": {
+    "array_buffer.js.mbt": ["js"],
+    "array_buffer.wasm.mbt": ["wasm", "wasm-gc"]
+  }
+}

@@ -5,9 +5,22 @@ import(
 )
 
 // Values
+fn equal(T, T) -> Bool
+
+fn length(T) -> Int
+
+fn of_string(String) -> T
+
+fn to_string(T) -> String
 
 // Types and methods
 pub extern type T
+impl T {
+  equal(Self, Self) -> Bool
+  length(Self) -> Int
+  to_string(Self) -> String
+}
+impl Eq for T
 impl @value.Of for T
 impl @value.To for T
 

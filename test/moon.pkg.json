@@ -1,5 +1,11 @@
 {
-  "import": ["tonyfettes/js", "tonyfettes/js/value", "tonyfettes/js/array"],
+  "import": [
+    "tonyfettes/js",
+    "tonyfettes/js/value",
+    "tonyfettes/js/array",
+    "tonyfettes/js/int32_array",
+    "tonyfettes/js/uint8_array"
+  ],
   "link": {
     "js": {
       "exports": [

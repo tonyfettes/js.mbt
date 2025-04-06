@@ -5,7 +5,7 @@ pub extern "js" fn T::new() -> T =
 ///|
 pub extern "js" fn T::op_set(
   self : T,
-  key : @string.T,
+  key : @value.T,
   value : @value.T
 ) -> Unit =
   #|(self, key, value) => {
@@ -13,7 +13,7 @@ pub extern "js" fn T::op_set(
   #|}
 
 ///|
-pub extern "js" fn T::op_get(self : T, key : @string.T) -> @value.T =
+pub extern "js" fn T::op_get(self : T, key : @value.T) -> @value.T =
   #|(self, key) => {
   #|  return self[key];
   #|}

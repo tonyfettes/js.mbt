@@ -6,14 +6,15 @@ import(
 )
 
 // Values
+fn new() -> T
+
+fn of_array[Value : @value.Of](Array[Value]) -> T
 
 // Types and methods
-type T
+pub extern type T
 impl T {
   iter(Self) -> Iter[@value.T]
   length(Self) -> Int
-  new() -> Self
-  of_array[Value : @value.Of](Array[Value]) -> Self
   op_get(Self, Int) -> @value.T
   op_set(Self, Int, @value.T) -> Unit
   push[Value : @value.Of](Self, Value) -> Unit

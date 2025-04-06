@@ -1,7 +1,6 @@
 package "tonyfettes/js/object"
 
 import(
-  "tonyfettes/js/string"
   "tonyfettes/js/value"
 )
 
@@ -12,8 +11,8 @@ fn to[To : To](T) -> To?
 pub extern type T
 impl T {
   new() -> Self
-  op_get(Self, @string.T) -> @value.T
-  op_set(Self, @string.T, @value.T) -> Unit
+  op_get(Self, @value.T) -> @value.T
+  op_set(Self, @value.T, @value.T) -> Unit
   to[To : To](Self) -> To?
 }
 impl @value.Of for T

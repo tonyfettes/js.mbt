@@ -9,7 +9,7 @@ extern "js" fn _is(value : @value.T) -> Bool =
 extern "js" fn _of(value : @value.T) -> T = "%identity"
 
 ///|
-pub impl @value.To for T with to(value : @value.T) -> T? {
+pub impl @value.To for T with of_value(value : @value.T) -> T? {
   guard _is(value) else { return None }
   Some(_of(value))
 }
@@ -29,6 +29,9 @@ pub extern "js" fn equal(self : T, other : T) -> Bool =
 pub impl Eq for T with op_equal(self : T, other : T) -> Bool {
   equal(self, other)
 }
+
+///|
+pub fn of_string(string : String) -> T = "%identity"
 
 ///|
 pub extern "js" fn to_string(self : T) -> String = "%identity"

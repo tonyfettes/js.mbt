@@ -1,0 +1,21 @@
+package "tonyfettes/js/uint8_array"
+
+import(
+  "tonyfettes/js/array"
+  "tonyfettes/js/array_buffer"
+)
+
+// Values
+fn from_array(@array.T) -> T
+
+fn from_array_buffer(@array_buffer.T) -> T
+
+fn new() -> T
+
+// Types and methods
+pub extern type T
+
+// Type aliases
+
+// Traits
+
