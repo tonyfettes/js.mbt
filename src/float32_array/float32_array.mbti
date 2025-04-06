@@ -1,4 +1,4 @@
-package "tonyfettes/js/int32_array"
+package "tonyfettes/js/float32_array"
 
 import(
   "tonyfettes/js/array"
@@ -21,8 +21,8 @@ impl T {
   from_array_buffer(@array_buffer.T) -> Self
   length(Self) -> Int
   new(Int) -> Self
-  op_get(Self, Int) -> Int
-  op_set(Self, Int, Int) -> Unit
+  op_get(Self, Int) -> Float
+  op_set(Self, Int, Float) -> Unit
 }
 
 // Type aliases

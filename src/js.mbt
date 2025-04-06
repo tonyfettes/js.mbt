@@ -18,3 +18,6 @@ pub typealias Uint8Array = @uint8_array.T
 
 ///|
 pub typealias Int32Array = @int32_array.T
+
+///|
+pub typealias Float32Array = @float32_array.T

@@ -6,7 +6,8 @@
     "tonyfettes/js/object",
     "tonyfettes/js/array_buffer",
     "tonyfettes/js/uint8_array",
-    "tonyfettes/js/int32_array"
+    "tonyfettes/js/int32_array",
+    "tonyfettes/js/float32_array"
   ],
   "test-import": [
     {

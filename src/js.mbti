@@ -7,7 +7,17 @@ package "tonyfettes/js"
 // Type aliases
 pub typealias Array = @tonyfettes/js/array.T
 
+pub typealias ArrayBuffer = @tonyfettes/js/array_buffer.T
+
+pub typealias Float32Array = @tonyfettes/js/float32_array.T
+
+pub typealias Int32Array = @tonyfettes/js/int32_array.T
+
+pub typealias Object = @tonyfettes/js/object.T
+
 pub typealias String = @tonyfettes/js/string.T
+
+pub typealias Uint8Array = @tonyfettes/js/uint8_array.T
 
 pub typealias Value = @tonyfettes/js/value.T
 

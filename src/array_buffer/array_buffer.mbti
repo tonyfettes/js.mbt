@@ -5,6 +5,9 @@ fn new() -> T
 
 // Types and methods
 pub extern type T
+impl T {
+  new() -> Self
+}
 
 // Type aliases
 

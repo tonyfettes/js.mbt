@@ -123,6 +123,30 @@ export default {
       return array[index];
     },
   },
+  "tonyfettes:js/float32_array": {
+    new: (length: number): Float32Array => {
+      return new Float32Array(length);
+    },
+    from_array_buffer: (
+      buffer: ArrayBuffer,
+      byteOffset: number,
+      length: number
+    ): Float32Array => {
+      return new Float32Array(buffer, byteOffset, length);
+    },
+    from_array: (array: Array<number>): Float32Array => {
+      return Float32Array.from(array);
+    },
+    length(array: Float32Array): number {
+      return array.length;
+    },
+    set(array: Float32Array, index: number, value: number): void {
+      array[index] = value;
+    },
+    get(array: Float32Array, index: number): number {
+      return array[index];
+    },
+  },
   "moonbit:ffi": {
     make_closure: (funcref: any, closure: any) => funcref.bind(null, closure),
   },

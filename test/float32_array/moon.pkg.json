@@ -1,0 +1,14 @@
+{
+  "import": ["tonyfettes/js", "tonyfettes/js/float32_array"],
+  "link": {
+    "js": {
+      "exports": ["float32_array_length", "float32_array_get", "float32_array_set"]
+    },
+    "wasm": {
+      "exports": ["float32_array_length", "float32_array_get", "float32_array_set"]
+    },
+    "wasm-gc": {
+      "exports": ["float32_array_length", "float32_array_get", "float32_array_set"]
+    }
+  }
+}

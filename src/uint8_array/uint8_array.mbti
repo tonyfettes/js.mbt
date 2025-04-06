@@ -10,10 +10,20 @@ fn from_array(@array.T) -> T
 
 fn from_array_buffer(@array_buffer.T) -> T
 
-fn new() -> T
+fn length(T) -> Int
+
+fn new(Int) -> T
 
 // Types and methods
 pub extern type T
+impl T {
+  from_array(@array.T) -> Self
+  from_array_buffer(@array_buffer.T) -> Self
+  length(Self) -> Int
+  new(Int) -> Self
+  op_get(Self, Int) -> Byte
+  op_set(Self, Int, Byte) -> Unit
+}
 
 // Type aliases
 
