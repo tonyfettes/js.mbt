@@ -48,6 +48,11 @@ pub fn of_string(string : String) -> T {
 }
 
 ///|
+pub fn T::of_string(string : String) -> T {
+  of_string(string)
+}
+
+///|
 pub fn to_string(self : T) -> String {
   let string = StringBuilder::new()
   for i in 0..<length(self) {

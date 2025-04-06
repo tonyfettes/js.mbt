@@ -17,6 +17,8 @@ declare global {
   }
 }
 
+type TypedArray = Uint8Array | Int32Array | Float32Array;
+
 export default {
   "tonyfettes:js": {
     null: () => null,
@@ -40,10 +42,10 @@ export default {
     length<T>(array: Array<T>): number {
       return array.length;
     },
-    set<T>(array: Array<T>, index: number, value: T): void {
+    op_set<T>(array: Array<T>, index: number, value: T): void {
       array[index] = value;
     },
-    get<T>(array: Array<T>, index: number): T {
+    op_get<T>(array: Array<T>, index: number): T {
       return array[index];
     },
   },
@@ -75,6 +77,24 @@ export default {
       return new ArrayBuffer(length);
     },
   },
+  "tonyfettes:js/typed_array": {
+    length(array: TypedArray): number {
+      return array.length;
+    },
+    op_set(array: TypedArray, index: number, value: number): void {
+      array[index] = value;
+    },
+    op_get(array: TypedArray, index: number): number {
+      return array[index];
+    },
+    set(
+      self: TypedArray,
+      other: TypedArray | Array<number>,
+      offset: number
+    ): void {
+      self.set(other, offset);
+    },
+  },
   "tonyfettes:js/uint8_array": {
     new: (length: number): Uint8Array => {
       return new Uint8Array(length);
@@ -88,15 +108,6 @@ export default {
     },
     from_array: (array: Array<number>): Uint8Array => {
       return Uint8Array.from(array);
-    },
-    length(array: Uint8Array): number {
-      return array.length;
-    },
-    set(array: Uint8Array, index: number, value: number): void {
-      array[index] = value;
-    },
-    get(array: Uint8Array, index: number): number {
-      return array[index];
     },
   },
   "tonyfettes:js/int32_array": {
@@ -113,15 +124,6 @@ export default {
     from_array: (array: Array<number>): Int32Array => {
       return Int32Array.from(array);
     },
-    length(array: Int32Array): number {
-      return array.length;
-    },
-    set(array: Int32Array, index: number, value: number): void {
-      array[index] = value;
-    },
-    get(array: Int32Array, index: number): number {
-      return array[index];
-    },
   },
   "tonyfettes:js/float32_array": {
     new: (length: number): Float32Array => {
@@ -136,15 +138,6 @@ export default {
     },
     from_array: (array: Array<number>): Float32Array => {
       return Float32Array.from(array);
-    },
-    length(array: Float32Array): number {
-      return array.length;
-    },
-    set(array: Float32Array, index: number, value: number): void {
-      array[index] = value;
-    },
-    get(array: Float32Array, index: number): number {
-      return array[index];
     },
   },
   "moonbit:ffi": {

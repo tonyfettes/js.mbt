@@ -35,6 +35,18 @@ pub fn T::push[Value : @value.Of](self : T, value : Value) -> Unit {
 
 ///|
 pub fn of_array[Value : @value.Of](array : Array[Value]) -> T {
+  T::of_array(array)
+}
+
+pub fn T::of_array[Value : @value.Of](array : Array[Value]) -> T {
+  let js_array = new()
+  for value in array {
+    js_array.push_value(value.to_value())
+  }
+  js_array
+}
+
+pub fn T::of_fixed_array[Value : @value.Of](array : FixedArray[Value]) -> T {
   let js_array = new()
   for value in array {
     js_array.push_value(value.to_value())

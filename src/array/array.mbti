@@ -16,6 +16,7 @@ impl T {
   iter(Self) -> Iter[@value.T]
   length(Self) -> Int
   new() -> Self
+  of_array[Value : @value.Of](Array[Value]) -> Self
   op_get(Self, Int) -> @value.T
   op_set(Self, Int, @value.T) -> Unit
   push[Value : @value.Of](Self, Value) -> Unit

@@ -17,10 +17,10 @@ fn _of_object(object : @object.T) -> T = "tonyfettes:js" "identity"
 fn T::push_value(self : T, value : @value.T) -> Unit = "tonyfettes:js/array" "push"
 
 ///|
-fn T::set_value(self : T, index : Int, value : @value.T) -> Unit = "tonyfettes:js/array" "set"
+fn T::set_value(self : T, index : Int, value : @value.T) -> Unit = "tonyfettes:js/array" "op_set"
 
 ///|
-fn T::get_value(self : T, index : Int) -> @value.T = "tonyfettes:js/array" "get"
+fn T::get_value(self : T, index : Int) -> @value.T = "tonyfettes:js/array" "op_get"
 
 ///|
 pub fn T::length(self : T) -> Int = "tonyfettes:js/array" "length"

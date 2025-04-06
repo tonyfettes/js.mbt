@@ -23,6 +23,7 @@ impl T {
   new(Int) -> Self
   op_get(Self, Int) -> Int
   op_set(Self, Int, Int) -> Unit
+  set(Self, Self, offset~ : Int = ..) -> Unit
 }
 
 // Type aliases

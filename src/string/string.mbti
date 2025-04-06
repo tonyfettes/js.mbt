@@ -18,6 +18,7 @@ pub extern type T
 impl T {
   equal(Self, Self) -> Bool
   length(Self) -> Int
+  of_string(String) -> Self
   to_string(Self) -> String
 }
 impl Eq for T

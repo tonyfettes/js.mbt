@@ -60,3 +60,9 @@ pub extern "js" fn T::op_get(self : T, offset : Int) -> Float =
   #|(array, offset) => {
   #|  return array[offset];
   #|}
+
+///|
+pub extern "js" fn T::set(self : T, other : T, offset~ : Int = 0) -> Unit =
+  #|(self, other, offset) => {
+  #|  self.set(other, offset);
+  #|}

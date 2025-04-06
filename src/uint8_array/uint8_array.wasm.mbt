@@ -20,10 +20,13 @@ pub fn from_array(array : @array.T) -> T = "tonyfettes:js/uint8_array" "from_arr
 pub fn T::from_array(array : @array.T) -> T = "tonyfettes:js/uint8_array" "from_array"
 
 ///|
-pub fn length(self : T) -> Int = "tonyfettes:js/uint8_array" "length"
+pub fn length(self : T) -> Int = "tonyfettes:js/typed_array" "length"
 
 ///|
-pub fn T::op_set(self : T, offset : Int, value : Byte) = "tonyfettes:js/uint8_array" "set"
+pub fn T::op_set(self : T, offset : Int, value : Byte) = "tonyfettes:js/typed_array" "op_set"
 
 ///|
-pub fn T::op_get(self : T, offset : Int) -> Byte = "tonyfettes:js/uint8_array" "get"
+pub fn T::op_get(self : T, offset : Int) -> Byte = "tonyfettes:js/typed_array" "op_get"
+
+///|
+pub fn T::set(self : T, other : T, offset~ : Int = 0) -> Unit = "tonyfettes:js/typed_array" "set"
