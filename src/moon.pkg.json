@@ -1,4 +1,7 @@
 {
+  "targets": {
+    "js.mbt": ["js", "wasm", "wasm-gc"]
+  },
   "import": [
     "tonyfettes/js/string",
     "tonyfettes/js/array",

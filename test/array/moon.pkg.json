@@ -1,0 +1,29 @@
+{
+  "import": ["tonyfettes/js", "tonyfettes/js/value", "tonyfettes/js/array"],
+  "link": {
+    "js": {
+      "exports": [
+        "test_array_int",
+        "test_array_float",
+        "test_array_double",
+        "test_array_modify"
+      ]
+    },
+    "wasm": {
+      "exports": [
+        "test_array_int",
+        "test_array_float",
+        "test_array_double",
+        "test_array_modify"
+      ]
+    },
+    "wasm-gc": {
+      "exports": [
+        "test_array_int",
+        "test_array_float",
+        "test_array_double",
+        "test_array_modify"
+      ]
+    }
+  }
+}

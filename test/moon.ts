@@ -1,4 +1,4 @@
-import Test from "node:test";
+import * as Test from "node:test";
 import Fsp from "node:fs/promises";
 import Path from "node:path";
 import ChildProcess from "node:child_process";
@@ -72,20 +72,22 @@ export async function test<T>(
   packageName: string | undefined,
   imports: WebAssembly.Imports,
   fn: (exports: T) => void | Promise<void>
-) {
-  Test(packageName, async () => {
-    const targets = ["js", "wasm", "wasm-gc"] as const;
-    const profiles = ["debug", "release"] as const;
-    const targetExports = [];
-    for (const target of targets) {
-      for (const profile of profiles) {
-        targetExports.push(
-          await load<T>({ target, profile, package: packageName, imports })
-        );
+): Promise<(context: Test.TestContext) => Promise<void>> {
+  return async (context: Test.TestContext) => {
+    await context.test(packageName, async () => {
+      const targets = ["js", "wasm", "wasm-gc"] as const;
+      const profiles = ["debug", "release"] as const;
+      const targetExports = [];
+      for (const target of targets) {
+        for (const profile of profiles) {
+          targetExports.push(
+            await load<T>({ target, profile, package: packageName, imports })
+          );
+        }
       }
-    }
-    for (const exports of targetExports) {
-      await fn(exports);
-    }
-  });
+      for (const exports of targetExports) {
+        await fn(exports);
+      }
+    });
+  };
 }

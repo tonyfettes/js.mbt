@@ -8,7 +8,7 @@ type Exports = {
   int32_array_get: (array: Int32Array, index: number) => number;
 };
 
-Moon.test<Exports>("int32_array", JsImports, async (exports) => {
+export default Moon.test<Exports>("int32_array", JsImports, async (exports) => {
   // Randomly generate a Int32Array of random length between 8 and 16
   const length = Math.floor(Math.random() * 9) + 8;
   const array = new Int32Array(length);
