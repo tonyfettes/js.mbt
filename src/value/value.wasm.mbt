@@ -2,6 +2,9 @@
 pub fn null() -> T = "tonyfettes:js" "null"
 
 ///|
+pub fn undefined() -> T = "tonyfettes:js" "undefined"
+
+///|
 pub fn T::is_null(self : T) -> Bool = "tonyfettes:js" "is_null"
 
 ///|

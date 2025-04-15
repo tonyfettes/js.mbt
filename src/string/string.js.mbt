@@ -33,6 +33,7 @@ pub impl Eq for T with op_equal(self : T, other : T) -> Bool {
 ///|
 pub fn of_string(string : String) -> T = "%identity"
 
+///|
 pub fn T::of_string(string : String) -> T = "%identity"
 
 ///|

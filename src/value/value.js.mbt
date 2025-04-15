@@ -3,6 +3,10 @@ pub extern "js" fn null() -> T =
   #|() => null
 
 ///|
+pub extern "js" fn undefined() -> T =
+  #|() => undefined
+
+///|
 pub extern "js" fn T::is_null(self : T) -> Bool =
   #|(self) => self === null
 

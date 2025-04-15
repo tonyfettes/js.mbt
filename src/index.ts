@@ -22,6 +22,7 @@ type TypedArray = Uint8Array | Int32Array | Float32Array;
 export default {
   "tonyfettes:js": {
     null: () => null,
+    undefined: () => undefined,
     is_null: (value: any): boolean => value === null,
     is_undefined: (value: any): boolean => value === undefined,
     is_boolean: (value: any): boolean => typeof value === "boolean",

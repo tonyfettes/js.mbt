@@ -38,6 +38,7 @@ pub fn of_array[Value : @value.Of](array : Array[Value]) -> T {
   T::of_array(array)
 }
 
+///|
 pub fn T::of_array[Value : @value.Of](array : Array[Value]) -> T {
   let js_array = new()
   for value in array {
@@ -46,6 +47,7 @@ pub fn T::of_array[Value : @value.Of](array : Array[Value]) -> T {
   js_array
 }
 
+///|
 pub fn T::of_fixed_array[Value : @value.Of](array : FixedArray[Value]) -> T {
   let js_array = new()
   for value in array {
