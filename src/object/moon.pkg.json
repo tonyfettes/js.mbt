@@ -1,8 +1,0 @@
-{
-  "targets": {
-    "object.js.mbt": ["js"],
-    "object.wasm.mbt": ["wasm", "wasm-gc"],
-    "object.mbt": ["js", "wasm", "wasm-gc"]
-  },
-  "import": ["tonyfettes/js/value"]
-}

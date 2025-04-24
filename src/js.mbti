@@ -1,25 +1,170 @@
 package "tonyfettes/js"
 
+import(
+  "moonbitlang/core/builtin"
+  "moonbitlang/core/immut/array"
+  "moonbitlang/core/immut/list"
+)
+
 // Values
 
 // Types and methods
+pub extern type Array
+impl Array {
+  iter(Self) -> Iter[Value]
+  length(Self) -> Int
+  new() -> Self
+  of_array[Value : ToValue](@builtin.Array[Value]) -> Self
+  of_fixed_array[Value : ToValue](FixedArray[Value]) -> Self
+  op_get(Self, Int) -> Value
+  op_set[Value : ToValue](Self, Int, Value) -> Unit
+  push[Value : ToValue](Self, Value) -> Unit
+  to_array[Value : OfValue](Self) -> @builtin.Array[Value]!
+}
+impl OfObject for Array
+impl OfValue for Array
+impl ToObject for Array
+impl ToValue for Array
+
+pub extern type ArrayBuffer
+impl ArrayBuffer {
+  new() -> Self
+}
+
+type Err
+impl OfValue for Err
+impl ToValue for Err
+
+pub extern type Float32Array
+impl Float32Array {
+  from_array(Array) -> Self
+  from_array_buffer(ArrayBuffer) -> Self
+  length(Self) -> Int
+  new(Int) -> Self
+  op_get(Self, Int) -> Float
+  op_set(Self, Int, Float) -> Unit
+  set(Self, Self, offset~ : Int = ..) -> Unit
+}
+impl OfValue for Float32Array
+impl ToValue for Float32Array
+
+pub extern type Int32Array
+impl Int32Array {
+  from_array(Array) -> Self
+  from_array_buffer(ArrayBuffer) -> Self
+  length(Self) -> Int
+  new(Int) -> Self
+  op_get(Self, Int) -> Int
+  op_set(Self, Int, Int) -> Unit
+  set(Self, Self, offset~ : Int = ..) -> Unit
+}
+
+pub extern type JSError
+
+type JSTypeError
+
+pub extern type Object
+impl Object {
+  new() -> Self
+  op_get[Key : ToValue](Self, Key) -> Value
+  op_set[Key : ToValue, Value : ToValue](Self, Key, Value) -> Unit
+  to[To : OfObject](Self) -> To!
+}
+impl OfValue for Object
+impl ToValue for Object
+
+pub extern type Str
+impl Str {
+  equal(Self, Self) -> Bool
+  length(Self) -> Int
+  of_string(String) -> Self
+  to_string(Self) -> String
+}
+impl Eq for Str
+impl OfValue for Str
+impl ToValue for Str
+
+pub type! TypeError JSTypeError
+impl TypeError {
+  new(String) -> Self
+}
+impl ToError for TypeError
+
+pub extern type Uint8Array
+impl Uint8Array {
+  from_array(Array) -> Self
+  from_array_buffer(ArrayBuffer) -> Self
+  length(Self) -> Int
+  new(Int) -> Self
+  op_get(Self, Int) -> Byte
+  op_set(Self, Int, Byte) -> Unit
+  set(Self, Self, offset~ : Int = ..) -> Unit
+  to_bytes(Self) -> Bytes
+}
+
+pub extern type Value
+impl Value {
+  is_boolean(Self) -> Bool
+  is_null(Self) -> Bool
+  is_number(Self) -> Bool
+  is_undefined(Self) -> Bool
+  null() -> Self
+  of[T : ToValue](T) -> Self
+  to_bool(Self) -> Bool!
+  to_char(Self) -> Char!
+  to_double(Self) -> Double!
+  to_float(Self) -> Float!
+  to_float32_array(Self) -> Float32Array!
+  to_int(Self) -> Int!
+  to_int64(Self) -> Int64!
+  to_js_array(Self) -> Array!
+  to_js_error(Self) -> Err!
+  to_js_object(Self) -> Object!
+  to_js_string(Self) -> Str!
+  to_uint(Self) -> UInt!
+  to_uint64(Self) -> UInt64!
+  undefined() -> Self
+}
+impl OfValue for Value
+impl ToError for Value
+impl ToValue for Value
 
 // Type aliases
-pub typealias Array = @tonyfettes/js/array.T
-
-pub typealias ArrayBuffer = @tonyfettes/js/array_buffer.T
-
-pub typealias Float32Array = @tonyfettes/js/float32_array.T
-
-pub typealias Int32Array = @tonyfettes/js/int32_array.T
-
-pub typealias Object = @tonyfettes/js/object.T
-
-pub typealias String = @tonyfettes/js/string.T
-
-pub typealias Uint8Array = @tonyfettes/js/uint8_array.T
-
-pub typealias Value = @tonyfettes/js/value.T
 
 // Traits
+pub(open) trait OfObject {
+  to(Object) -> Self!
+}
+
+pub(open) trait OfValue {
+  of_value(Value) -> Self!
+}
+
+pub(open) trait ToArray {
+  to_js_array(Self) -> Array
+}
+impl[T : ToValue] ToArray for FixedArray[T]
+impl[T : ToValue] ToArray for @builtin.Array[T]
+impl[T : ToValue] ToArray for @array.T[T]
+impl[T : ToValue] ToArray for @list.T[T]
+
+pub(open) trait ToError {
+  to_js_error(Self) -> JSError
+}
+
+pub(open) trait ToObject {
+  to_js_object(Self) -> Object
+}
+
+pub(open) trait ToValue {
+  to_js_value(Self) -> Value
+}
+impl ToValue for Bool
+impl ToValue for Char
+impl ToValue for Int
+impl ToValue for Int64
+impl ToValue for UInt
+impl ToValue for UInt64
+impl ToValue for Float
+impl ToValue for Double
 

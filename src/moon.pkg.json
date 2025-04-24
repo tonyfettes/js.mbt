@@ -1,17 +1,34 @@
 {
   "targets": {
-    "js.mbt": ["js", "wasm", "wasm-gc"]
+    "array_buffer.js.mbt": ["js"],
+    "array_buffer.wasm.mbt": ["wasm", "wasm-gc"],
+    "array.mbt": ["js", "wasm", "wasm-gc"],
+    "array.js.mbt": ["js"],
+    "array.wasm.mbt": ["wasm", "wasm-gc"],
+    "error.mbt": ["js", "wasm", "wasm-gc"],
+    "error.js.mbt": ["js"],
+    "error.wasm.mbt": ["wasm", "wasm-gc"],
+    "float32_array.js.mbt": ["js"],
+    "float32_array.wasm.mbt": ["wasm", "wasm-gc"],
+    "int16_array.js.mbt": ["js"],
+    "int16_array.wasm.mbt": ["wasm", "wasm-gc"],
+    "int32_array.js.mbt": ["js"],
+    "int32_array.wasm.mbt": ["wasm", "wasm-gc"],
+    "js.mbt": ["js", "wasm", "wasm-gc"],
+    "object.mbt": ["js", "wasm", "wasm-gc"],
+    "object.js.mbt": ["js"],
+    "object.wasm.mbt": ["wasm", "wasm-gc"],
+    "string.js.mbt": ["js"],
+    "string.wasm.mbt": ["wasm", "wasm-gc"],
+    "type_error.mbt": ["js", "wasm", "wasm-gc"],
+    "type_error.js.mbt": ["js"],
+    "type_error.wasm.mbt": ["wasm", "wasm-gc"],
+    "uint8_array.js.mbt": ["js"],
+    "uint8_array.wasm.mbt": ["wasm", "wasm-gc"],
+    "value.mbt": ["js", "wasm", "wasm-gc"],
+    "value.js.mbt": ["js"],
+    "value.wasm.mbt": ["wasm", "wasm-gc"]
   },
-  "import": [
-    "tonyfettes/js/string",
-    "tonyfettes/js/array",
-    "tonyfettes/js/value",
-    "tonyfettes/js/object",
-    "tonyfettes/js/array_buffer",
-    "tonyfettes/js/uint8_array",
-    "tonyfettes/js/int32_array",
-    "tonyfettes/js/float32_array"
-  ],
   "test-import": [
     {
       "path": "tonyfettes/js",

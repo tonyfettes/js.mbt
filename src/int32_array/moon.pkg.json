@@ -1,8 +1,0 @@
-{
-  "import": ["tonyfettes/js/array_buffer", "tonyfettes/js/array"],
-  "targets": {
-    "int32_array.js.mbt": ["js"],
-    "int32_array.wasm.mbt": ["wasm", "wasm-gc"],
-    "int32_array_test.mbt": ["js", "wasm", "wasm-gc"]
-  }
-}
